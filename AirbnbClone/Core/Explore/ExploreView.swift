@@ -26,7 +26,7 @@ struct ExploreVirew: View {
 				}
 			}
 			.navigationDestination(for: Int.self) { listing in
-				Text("Details of listing ")
+				ListingDetailView()
 			}
 		}
 	}
