@@ -8,20 +8,19 @@
 
 import SwiftUI
 
-struct ExploreVirew: View {
-
-	@State private var showDestinationSerchView = true
+struct ExploreView: View {
+	@State private var showDestinationSearchView = true
 
 	var body: some View {
 		NavigationStack {
-			if showDestinationSerchView {
-				DestinationSerchView(show: $showDestinationSerchView)
+			if showDestinationSearchView {
+				DestinationSearchView(show: $showDestinationSearchView)
 			} else {
 				ScrollView {
 					SearchAndFilterBar()
 						.onTapGesture {
 							withAnimation(.snappy) {
-								showDestinationSerchView.toggle()
+								showDestinationSearchView.toggle()
 							}
 						}
 
@@ -45,6 +44,6 @@ struct ExploreVirew: View {
 }
 
 #Preview {
-	ExploreVirew()
+	ExploreView()
 }
 

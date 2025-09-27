@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
 	var body: some View {
 		TabView {
-			ExploreVirew()
+			ExploreView()
 				.tabItem {
 					Label("Explore", systemImage: "magnifyingglass")
 				}

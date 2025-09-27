@@ -8,6 +8,8 @@
 import Foundation
 
 class DeveloperPreview {
+	static let shared = DeveloperPreview()
+
 	var listings: [Listing] = [
 		Listing(
 			id: UUID().uuidString,
@@ -230,6 +232,4 @@ class DeveloperPreview {
 			type: .apartment
 		)
 	]
-
-
 }

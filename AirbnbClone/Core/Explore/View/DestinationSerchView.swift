@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-enum DestinationSerchOptions {
+enum DestinationSearchOptions {
 	case location
 	case dates
 	case guests
 }
 
-struct DestinationSerchView: View {
+struct DestinationSearchView: View {
 
 	@Binding var show: Bool
 	@State private var destination: String = ""
-	@State private var selectedOption: DestinationSerchOptions = .location
+	@State private var selectedOption: DestinationSearchOptions = .location
 	@State private var startDate: Date = Date()
 	@State private var endDate: Date = Date()
 	@State private var guests: Int = 0
@@ -150,7 +150,7 @@ struct DestinationSerchView: View {
 }
 
 #Preview {
-	DestinationSerchView(show: .constant(true))
+	DestinationSearchView(show: .constant(true))
 }
 
 struct CollapsibleDestinationViewModifier: ViewModifier {
