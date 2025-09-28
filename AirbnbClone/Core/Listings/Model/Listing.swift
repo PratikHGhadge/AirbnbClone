@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Listing: Identifiable, Codable {
+struct Listing: Identifiable, Codable, Hashable {
 	let id: String
 	let ownerUserID: String
 	let ownerName: String
@@ -52,7 +52,7 @@ enum ListingFeatures: Int, Codable, Identifiable, Hashable {
 		}
 	}
 
-	var subTitle: String {
+	var subtitle: String {
 		switch self {
 			case .selfCheckin:
 				return "Check yourself in with the keypad."
