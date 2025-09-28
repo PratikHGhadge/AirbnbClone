@@ -11,8 +11,21 @@ import SwiftUI
 struct ListingDetailView: View {
 
 	let listing : Listing
-
 	@Environment(\.dismiss) var dismiss
+	@State private var cameraPosition : MapCameraPosition
+
+	init(listing: Listing) {
+		self.listing = listing
+		let locationCoordinate2D = CLLocationCoordinate2D(
+			latitude: listing.latitude,
+			longitude: listing.longitude
+		)
+		let coordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+		let region = MKCoordinateRegion(
+			center: locationCoordinate2D, span: coordinateSpan
+		)
+		self._cameraPosition = State(initialValue: .region(region))
+	}
 
 	var body : some View {
 		ScrollView {
@@ -67,8 +80,8 @@ struct ListingDetailView: View {
 					Text(
 						"Entire \(listing.type) is hosted by \(listing.ownerName)"
 					)
-						.font(.headline)
-						.frame(width: 250, alignment: .leading)
+					.font(.headline)
+					.frame(width: 250, alignment: .leading)
 
 					HStack(spacing: 2) {
 						Text("\(listing.numberOfGuests) guests ·")
@@ -146,7 +159,7 @@ struct ListingDetailView: View {
 			VStack(alignment: .leading, spacing: 16) {
 				Text("Whats this place offers")
 					.font(.headline)
-				
+
 				ForEach(listing.amenities) { amenity in
 					HStack {
 						Image(systemName: amenity.imageName)
@@ -167,7 +180,7 @@ struct ListingDetailView: View {
 				Text("Where you'll be")
 					.font(.headline)
 
-				Map()
+				Map(initialPosition: cameraPosition)
 					.frame(height: 200)
 					.clipShape(RoundedRectangle(cornerRadius: 12))
 			}
@@ -218,5 +231,5 @@ struct ListingDetailView: View {
 }
 
 #Preview {
-	ListingDetailView(listing: DeveloperPreview.shared.listings[0])
+	ListingDetailView(listing: DeveloperPreview.shared.listings[1])
 }
