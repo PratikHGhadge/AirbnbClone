@@ -21,6 +21,7 @@ struct DestinationSearchView: View {
 	@State private var startDate: Date = Date()
 	@State private var endDate: Date = Date()
 	@State private var guests: Int = 0
+	@ObservedObject var exploreViewModel: ExploreViewModel
 
 	var body: some View {
 		VStack {
@@ -62,6 +63,12 @@ struct DestinationSearchView: View {
 
 						TextField("Serch destinations", text:$destination)
 							.font(.subheadline)
+							.onSubmit {
+								exploreViewModel.updateListingsForLocation(destination)
+								withAnimation(.snappy) {
+									show.toggle()
+								}
+							}
 					}
 					.frame(height: 44)
 					.padding(.horizontal)
@@ -129,7 +136,7 @@ struct DestinationSearchView: View {
 						.fontWeight(.semibold)
 					HStack {
 						Text("\(guests)")
-						
+
 						Stepper("Adults", value: $guests, in: 1...50)
 					}
 
@@ -150,7 +157,10 @@ struct DestinationSearchView: View {
 }
 
 #Preview {
-	DestinationSearchView(show: .constant(true))
+	DestinationSearchView(
+		show: .constant(true),
+		exploreViewModel: ExploreViewModel(service: ExploreService())
+	)
 }
 
 struct CollapsibleDestinationViewModifier: ViewModifier {

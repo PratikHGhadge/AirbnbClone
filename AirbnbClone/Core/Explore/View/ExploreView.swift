@@ -15,7 +15,10 @@ struct ExploreView: View {
 	var body: some View {
 		NavigationStack {
 			if showDestinationSearchView {
-				DestinationSearchView(show: $showDestinationSearchView)
+				DestinationSearchView(
+					show: $showDestinationSearchView,
+					exploreViewModel: viewModel
+				)
 			} else {
 				ScrollView {
 					SearchAndFilterBar()
