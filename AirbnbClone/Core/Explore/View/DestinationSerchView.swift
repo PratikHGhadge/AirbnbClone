@@ -65,9 +65,6 @@ struct DestinationSearchView: View {
 							.font(.subheadline)
 							.onSubmit {
 								exploreViewModel.updateListingsForLocation(destination)
-								withAnimation(.snappy) {
-									show.toggle()
-								}
 							}
 					}
 					.frame(height: 44)
@@ -151,8 +148,53 @@ struct DestinationSearchView: View {
 					selectedOption = .guests
 				}
 			}
+			Spacer()
 		}
-		Spacer()
+		.padding()
+		.overlay(alignment: .bottom){
+			HStack {
+				Button {
+					destination = "";
+					guests = 0;
+					startDate = Date();
+					endDate = Date();
+					exploreViewModel.updateListingsForLocation(destination)
+
+				}label: {
+					Text("Clear all")
+						.foregroundStyle(.black)
+						.underline()
+				}
+				Spacer()
+				Button {
+					exploreViewModel.updateListingsForLocation(destination)
+					show.toggle()
+				} label: {
+					HStack {
+						Image(systemName: "magnifyingglass")
+							.resizable()
+							.scaledToFit()
+							.frame(width: 15, height: 15)
+							.foregroundColor(.white)
+
+						Text("Search")
+							.font(.subheadline)
+							.fontWeight(.semibold)
+
+					} .foregroundStyle(.white)
+						.font(.subheadline)
+						.frame(width: 140, height: 50)
+						.background(.pink)
+						.clipShape(RoundedRectangle(cornerRadius: 8))
+				}
+			}
+			.padding(.top)
+			.padding(.horizontal)
+			.frame(height: 70)
+			.background(.white)
+		}
+		.toolbar(.hidden, for: .tabBar)
+		.background(Color(.systemGray5))
 	}
 }
 

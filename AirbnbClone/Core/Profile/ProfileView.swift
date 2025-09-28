@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+	@State var isLoginOrSignUp : Bool = false;
+
 	var body: some View {
 		VStack {
 			// Profile login view
@@ -21,7 +23,7 @@ struct ProfileView: View {
 				}
 
 				Button {
-					print("Log in")
+					isLoginOrSignUp = true
 				} label: {
 					Text("Log in")
 						.font(.subheadline)
@@ -39,8 +41,13 @@ struct ProfileView: View {
 						.fontWeight(.semibold)
 						.foregroundColor(.pink)
 						.underline()
+						.onTapGesture {
+							isLoginOrSignUp = true
+						}
 				}
-
+			}
+			.sheet(isPresented: $isLoginOrSignUp) {
+				LoginOrSignUpView(dismiss: $isLoginOrSignUp)
 			}
 
 			// Profile options

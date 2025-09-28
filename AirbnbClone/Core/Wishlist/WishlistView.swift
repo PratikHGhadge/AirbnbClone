@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WishlistView: View {
+	@State var isLoginOrSignUp : Bool = false;
+
 	var body: some View {
 		NavigationStack {
 			VStack(alignment: .leading, spacing: 32) {
@@ -21,7 +23,7 @@ struct WishlistView: View {
 				}
 
 				Button {
-					print("Log in")
+					isLoginOrSignUp = true
 				} label: {
 					Text("Log in")
 						.font(.subheadline)
@@ -36,6 +38,9 @@ struct WishlistView: View {
 			}
 			.padding()
 			.navigationBarTitle("Wishlist")
+		}
+		.sheet(isPresented: $isLoginOrSignUp) {
+			LoginOrSignUpView(dismiss: $isLoginOrSignUp)
 		}
 
 	}
