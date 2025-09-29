@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "listings",
+  "info": {
+    "singularName": "listing",
+    "pluralName": "listings",
+    "displayName": "Listing"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "ownerName": {
+      "type": "string",
+      "required": true
+    },
+    "numberOfBedrooms": {
+      "type": "integer",
+      "required": true
+    },
+    "numberOfBathrooms": {
+      "type": "integer"
+    },
+    "numberOfGuests": {
+      "type": "integer",
+      "required": true
+    },
+    "numberOfBeds": {
+      "type": "integer",
+      "required": true
+    },
+    "pricePerNight": {
+      "type": "integer",
+      "required": true
+    },
+    "latitude": {
+      "type": "float"
+    },
+    "longitude": {
+      "type": "float"
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "default": "house",
+      "enum": [
+        "apartment",
+        "house",
+        "villa"
+      ]
+    },
+    "imageURLs": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "ownerImageURL": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}
